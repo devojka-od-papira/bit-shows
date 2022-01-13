@@ -3,14 +3,13 @@ import { Box, Image, Spacer } from "@chakra-ui/react";
 import { StarIcon, PlusSquareIcon } from "@chakra-ui/icons";
 
 type CardTypes = {
-  id: number;
   url: string;
   name: string;
   rating: any;
   image: any;
 };
 
-const Card: React.FC<CardTypes> = ({ id, name, rating, image }) => {
+const Card: React.FC<CardTypes> = ({ name, rating, image }) => {
   return (
     <Box maxW="sm" borderWidth="1px" borderRadius="lg" overflow="hidden">
       <Image w="400px" h="480px" src={image.original} alt="" />

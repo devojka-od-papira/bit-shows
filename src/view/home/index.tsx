@@ -1,9 +1,10 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { Wrap } from "@chakra-ui/react";
+import { Box, Wrap } from "@chakra-ui/react";
 import { fetchShowsAction } from "./../../redux/actions";
 import { useAppSelector } from "./../../redux/store";
 import Card from "./../../components/card";
+import SearchBar from "../../components/search";
 
 type ShowType = {
   id: number;
@@ -16,19 +17,29 @@ type ShowType = {
 function Home() {
   const dispatch = useDispatch();
   const shows = useAppSelector((state) => state.data.shows);
-  console.log("shDAT", shows);
+  const [filterValue, setFilterValue] = useState("");
+
   useEffect(() => {
     dispatch(fetchShowsAction());
   }, []);
 
   return (
-    <div>
+    <Box>
+      <SearchBar setFilterValue={setFilterValue} />
       <Wrap justify="center">
-        {shows.map((show: ShowType) => {
-          return <Card {...show} />;
-        })}
+        {filterValue.length > 0
+          ? shows
+              .filter((show: ShowType) => {
+                return show.name.includes(filterValue);
+              })
+              .map((show: ShowType) => {
+                return <Card {...show} />;
+              })
+          : shows.map((show: ShowType) => {
+              return <Card {...show} />;
+            })}
       </Wrap>
-    </div>
+    </Box>
   );
 }
 export default Home;

@@ -12,7 +12,7 @@ function NavBar() {
       wrap="wrap"
       w="100%"
       mb={8}
-      p={8}
+      p={6}
       bg={["primary.500", "primary.500", "blue", "blue"]}
       color={["white", "white", "primary.700", "primary.700"]}
     >
