@@ -5,13 +5,22 @@ import reportWebVitals from "./reportWebVitals";
 import { ChakraProvider } from "@chakra-ui/react";
 import { ColorModeScript } from "@chakra-ui/react";
 import theme from "./config/theme";
+import {
+  Provider,
+  TypedUseSelectorHook,
+  useSelector,
+  useDispatch,
+} from "react-redux";
+import { store } from "./redux/store/index";
 
 ReactDOM.render(
   <React.StrictMode>
-    <ChakraProvider>
-      <ColorModeScript initialColorMode={theme.initialColorMode} />
-      <App />
-    </ChakraProvider>
+    <Provider store={store}>
+      <ChakraProvider>
+        <ColorModeScript initialColorMode={theme.initialColorMode} />
+        <App />
+      </ChakraProvider>
+    </Provider>
   </React.StrictMode>,
   document.getElementById("root")
 );
