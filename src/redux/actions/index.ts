@@ -8,6 +8,9 @@ import {
   FETCH_DETAIL_SHOW_REQEST,
   FETCH_DETAIL_SHOW_SUCCESS,
   FETCH_DETAIL_SHOW_ERROR,
+  FETCH_ACTORS_REQEST,
+  FETCH_ACTORS_SUCCESS,
+  FETCH_ACTORS_ERROR,
 } from "../actionTypes";
 
 export const fetchShowsAction = () => {
@@ -28,11 +31,8 @@ export const fetchShowsAction = () => {
 };
 
 export const sortShowsAction = (sortValue: string, shows: any) => {
-  console.log(shows);
-  console.log(sortValue);
   const sortedShows = shows.sort((a: any, b: any) => {
     if (sortValue === "name") {
-      console.log("nnnn", a[sortValue]);
       if (a[sortValue] < b[sortValue]) {
         return -1;
       } else if (a[sortValue] > b[sortValue]) {
@@ -41,7 +41,6 @@ export const sortShowsAction = (sortValue: string, shows: any) => {
         return 0;
       }
     } else {
-      console.log("nnnn", a[sortValue]);
       if (a[sortValue].average < b[sortValue].average) {
         return -1;
       } else if (a[sortValue].average > b[sortValue].average) {
@@ -51,29 +50,43 @@ export const sortShowsAction = (sortValue: string, shows: any) => {
       }
     }
   });
-  console.log("string poslednji", sortedShows);
   return (dispatch: Dispatch) => {
     dispatch({ type: SORT_SHOWS, payload: { shows: sortedShows } });
   };
 };
 
 export const fetchDetailShowAction = (id: string) => {
-  console.log("id", id);
   return (dispatch: Dispatch) => {
     dispatch({ type: FETCH_DETAIL_SHOW_REQEST });
     return axios
       .get(`https://api.tvmaze.com/shows/${id}`)
       .then((response) => {
-        console.log("responsDetail", response.data);
         dispatch({
           type: FETCH_DETAIL_SHOW_SUCCESS,
           payload: { detailShow: response.data },
         });
       })
       .catch((error) => {
-        console.log("error", error);
         dispatch({
           type: FETCH_DETAIL_SHOW_ERROR,
+        });
+      });
+  };
+};
+export const fetchActorsAction = (id: string) => {
+  return (dispatch: Dispatch) => {
+    dispatch({ type: FETCH_ACTORS_REQEST });
+    return axios
+      .get(`https://api.tvmaze.com/shows/${id}/cast`)
+      .then((response) => {
+        dispatch({
+          type: FETCH_ACTORS_SUCCESS,
+          payload: { actors: response.data },
+        });
+      })
+      .catch((error) => {
+        dispatch({
+          type: FETCH_ACTORS_ERROR,
         });
       });
   };

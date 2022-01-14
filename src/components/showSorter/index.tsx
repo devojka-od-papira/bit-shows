@@ -9,7 +9,6 @@ function ShowSorter() {
   const shows = useAppSelector((state) => state.data.shows);
 
   const handleSelect = (event: any) => {
-    console.log("click", event.target.value);
     dispatch(sortShowsAction(event.target.value, shows));
   };
   return (

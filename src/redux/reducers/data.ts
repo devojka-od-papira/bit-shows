@@ -6,11 +6,14 @@ import {
   FETCH_DETAIL_SHOW_REQEST,
   FETCH_DETAIL_SHOW_SUCCESS,
   FETCH_DETAIL_SHOW_ERROR,
+  FETCH_ACTORS_REQEST,
+  FETCH_ACTORS_SUCCESS,
 } from "../actionTypes";
 
 const initialState = {
   shows: [],
   detailShow: null,
+  actors: [],
 };
 
 // eslint-disable-next-line import/no-anonymous-default-export
@@ -38,6 +41,15 @@ export default (state = initialState, action: any) => {
       return {
         ...state,
         detailShow: action.payload.detailShow,
+      };
+    case FETCH_ACTORS_REQEST:
+      return {
+        ...state,
+      };
+    case FETCH_ACTORS_SUCCESS:
+      return {
+        ...state,
+        actors: action.payload.actors,
       };
     default:
       return state;
