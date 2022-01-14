@@ -18,7 +18,7 @@ function Home() {
   const dispatch = useDispatch();
   const shows = useAppSelector((state) => state.data.shows);
   const [filterValue, setFilterValue] = useState("");
-
+  console.log("shows ===>", shows);
   useEffect(() => {
     dispatch(fetchShowsAction());
   }, []);

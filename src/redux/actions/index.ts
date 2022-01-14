@@ -4,7 +4,8 @@ import {
   FETCH_SHOWS_REQEST,
   FETCH_SHOWS_SUCCESS,
   FETCH_SHOWS_ERROR,
-} from "./../actionTypes";
+  SORT_SHOWS,
+} from "../actionTypes";
 
 export const fetchShowsAction = () => {
   return (dispatch: Dispatch) => {
@@ -20,5 +21,35 @@ export const fetchShowsAction = () => {
       .catch((error) => {
         dispatch({ type: FETCH_SHOWS_ERROR });
       });
+  };
+};
+
+export const sortShowsAction = (sortValue: string, shows: any) => {
+  console.log(shows);
+  console.log(sortValue);
+  const sortedShows = shows.sort((a: any, b: any) => {
+    if (sortValue === "name") {
+      console.log("nnnn", a[sortValue]);
+      if (a[sortValue] < b[sortValue]) {
+        return -1;
+      } else if (a[sortValue] > b[sortValue]) {
+        return 1;
+      } else {
+        return 0;
+      }
+    } else {
+      console.log("nnnn", a[sortValue]);
+      if (a[sortValue].average < b[sortValue].average) {
+        return -1;
+      } else if (a[sortValue].average > b[sortValue].average) {
+        return 1;
+      } else {
+        return 0;
+      }
+    }
+  });
+  console.log("string poslednji", sortedShows);
+  return (dispatch: Dispatch) => {
+    dispatch({ type: SORT_SHOWS, payload: { shows: sortedShows } });
   };
 };
