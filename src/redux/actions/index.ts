@@ -5,6 +5,9 @@ import {
   FETCH_SHOWS_SUCCESS,
   FETCH_SHOWS_ERROR,
   SORT_SHOWS,
+  FETCH_DETAIL_SHOW_REQEST,
+  FETCH_DETAIL_SHOW_SUCCESS,
+  FETCH_DETAIL_SHOW_ERROR,
 } from "../actionTypes";
 
 export const fetchShowsAction = () => {
@@ -51,5 +54,27 @@ export const sortShowsAction = (sortValue: string, shows: any) => {
   console.log("string poslednji", sortedShows);
   return (dispatch: Dispatch) => {
     dispatch({ type: SORT_SHOWS, payload: { shows: sortedShows } });
+  };
+};
+
+export const fetchDetailShowAction = (id: string) => {
+  console.log("id", id);
+  return (dispatch: Dispatch) => {
+    dispatch({ type: FETCH_DETAIL_SHOW_REQEST });
+    return axios
+      .get(`https://api.tvmaze.com/shows/${id}`)
+      .then((response) => {
+        console.log("responsDetail", response.data);
+        dispatch({
+          type: FETCH_DETAIL_SHOW_SUCCESS,
+          payload: { detailShow: response.data },
+        });
+      })
+      .catch((error) => {
+        console.log("error", error);
+        dispatch({
+          type: FETCH_DETAIL_SHOW_ERROR,
+        });
+      });
   };
 };

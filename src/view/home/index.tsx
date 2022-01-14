@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { Box, Wrap } from "@chakra-ui/react";
 import { fetchShowsAction } from "./../../redux/actions";
@@ -33,10 +34,18 @@ function Home() {
                 return show.name.includes(filterValue);
               })
               .map((show: ShowType) => {
-                return <Card {...show} />;
+                return (
+                  <Link to={`/deatil/${show.id}`}>
+                    <Card {...show} />
+                  </Link>
+                );
               })
           : shows.map((show: ShowType) => {
-              return <Card {...show} />;
+              return (
+                <Link to={`/detail/${show.id}`}>
+                  <Card {...show} />
+                </Link>
+              );
             })}
       </Wrap>
     </Box>

@@ -4,6 +4,7 @@ import Home from "./view/home";
 import About from "./view/about";
 import Favorite from "./view/favorites";
 import NavBar from "./components/navbar";
+import Details from "./view/detail";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/favorites" element={<Favorite />} />
+        <Route path="/detail/:id" element={<Details />} />
       </Routes>
     </BrowserRouter>
   );
