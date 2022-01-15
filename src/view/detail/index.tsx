@@ -21,6 +21,7 @@ import {
   Spacer,
 } from "@chakra-ui/react";
 import { DragHandleIcon, HamburgerIcon } from "@chakra-ui/icons";
+import Footer from "../../components/footer";
 
 function Details() {
   const dispatch = useDispatch();
@@ -113,6 +114,7 @@ function Details() {
             : null}
         </Grid>
       </Container>
+      <Footer />
     </>
   ) : null;
 }
