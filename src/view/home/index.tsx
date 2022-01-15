@@ -37,8 +37,8 @@ function Home() {
                 })
                 .map((show: ShowType) => {
                   return (
-                    <GridItem>
-                      <Link to={`/deatil/${show.id}`}>
+                    <GridItem key={show.id} w="100%">
+                      <Link to={`/detail/${show.id}`}>
                         <Card {...show} />
                       </Link>
                     </GridItem>
@@ -46,7 +46,7 @@ function Home() {
                 })
             : shows.map((show: ShowType) => {
                 return (
-                  <GridItem w="100%">
+                  <GridItem key={show.id} w="100%">
                     <Link to={`/detail/${show.id}`}>
                       <Card {...show} />
                     </Link>
