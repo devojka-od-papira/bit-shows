@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { Box, Wrap } from "@chakra-ui/react";
+import { Box, Container, Grid, GridItem, Wrap } from "@chakra-ui/react";
 import { fetchShowsAction } from "./../../redux/actions";
 import { useAppSelector } from "./../../redux/store";
 import Card from "./../../components/card";
@@ -25,9 +25,9 @@ function Home() {
   }, []);
 
   return (
-    <Box>
+    <Container maxW="container.md">
       <SearchBar setFilterValue={setFilterValue} />
-      <Wrap justify="center">
+      <Grid templateColumns="repeat(3, 1fr)" gap={6}>
         {filterValue.length > 0
           ? shows
               .filter((show: ShowType) => {
@@ -35,20 +35,24 @@ function Home() {
               })
               .map((show: ShowType) => {
                 return (
-                  <Link to={`/deatil/${show.id}`}>
-                    <Card {...show} />
-                  </Link>
+                  <GridItem>
+                    <Link to={`/deatil/${show.id}`}>
+                      <Card {...show} />
+                    </Link>
+                  </GridItem>
                 );
               })
           : shows.map((show: ShowType) => {
               return (
-                <Link to={`/detail/${show.id}`}>
-                  <Card {...show} />
-                </Link>
+                <GridItem w="100%">
+                  <Link to={`/detail/${show.id}`}>
+                    <Card {...show} />
+                  </Link>
+                </GridItem>
               );
             })}
-      </Wrap>
-    </Box>
+      </Grid>
+    </Container>
   );
 }
 export default Home;

@@ -1,5 +1,5 @@
 import React from "react";
-import { Flex } from "@chakra-ui/react";
+import { Flex, Container, Box } from "@chakra-ui/react";
 import MenuItems from "../menuItems";
 import ThemeSwitch from "../themeSwitch";
 
@@ -16,8 +16,13 @@ function NavBar() {
       bg={["primary.500", "primary.500", "blue", "blue"]}
       color={["white", "white", "primary.700", "primary.700"]}
     >
-      <MenuItems isOpen={false} />
-      <ThemeSwitch />
+      <Container maxW="container.md">
+        <Box alignItems="center" justifyContent="space-between" display="flex">
+          {" "}
+          <MenuItems isOpen={false} />
+          <ThemeSwitch />
+        </Box>
+      </Container>
     </Flex>
   );
 }

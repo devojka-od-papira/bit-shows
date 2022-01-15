@@ -1,5 +1,14 @@
 import React from "react";
-import { InputGroup, Input, InputRightElement, Wrap } from "@chakra-ui/react";
+import {
+  InputGroup,
+  Input,
+  InputRightElement,
+  Wrap,
+  Box,
+  Container,
+  VStack,
+  HStack,
+} from "@chakra-ui/react";
 import { Search2Icon } from "@chakra-ui/icons";
 import ShowSorter from "./../showSorter";
 
@@ -12,17 +21,25 @@ const SearchBar: React.FC<SerachBarType> = ({ setFilterValue }) => {
     setFilterValue(event.target.value);
   };
   return (
-    <Wrap justify="center" mb={6}>
-      <InputGroup w="60%">
-        <Input
-          onChange={handleChange}
-          placeholder="Search shows"
-          variant="outline"
-        />
-        <InputRightElement children={<Search2Icon />} />
-      </InputGroup>
-      <ShowSorter />
-    </Wrap>
+    <Container maxW="container.md" centerContent>
+      <VStack>
+        <HStack mb={6}>
+          <Box>
+            <InputGroup>
+              <Input
+                onChange={handleChange}
+                placeholder="Search shows"
+                variant="outline"
+              />
+              <InputRightElement children={<Search2Icon />} />
+            </InputGroup>
+          </Box>
+          <Box>
+            <ShowSorter />
+          </Box>
+        </HStack>
+      </VStack>
+    </Container>
   );
 };
 export default SearchBar;
