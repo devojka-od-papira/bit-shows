@@ -18,7 +18,6 @@ function NavBar() {
     >
       <Container maxW="container.md">
         <Box alignItems="center" justifyContent="space-between" display="flex">
-          {" "}
           <MenuItems isOpen={false} />
           <ThemeSwitch />
         </Box>

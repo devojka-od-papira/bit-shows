@@ -8,12 +8,14 @@ import {
   FETCH_DETAIL_SHOW_ERROR,
   FETCH_ACTORS_REQEST,
   FETCH_ACTORS_SUCCESS,
+  SELECT_FAVORITE,
 } from "../actionTypes";
 
 const initialState = {
   shows: [],
   detailShow: null,
   actors: [],
+  favorites: [],
 };
 
 // eslint-disable-next-line import/no-anonymous-default-export
@@ -50,6 +52,11 @@ export default (state = initialState, action: any) => {
       return {
         ...state,
         actors: action.payload.actors,
+      };
+    case SELECT_FAVORITE:
+      return {
+        ...state,
+        favorites: action.payload.favorites,
       };
     default:
       return state;

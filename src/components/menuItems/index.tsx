@@ -20,6 +20,7 @@ const MenuItems: React.FC<MenuItemsTypes> = ({ isOpen }) => {
         pt={[4, 4, 0, 0]}
       >
         <Link to="/">BIT Shows</Link>
+        <Link to="/favorites">Favorites</Link>
         <Link to="/about">About </Link>
       </Stack>
     </Box>

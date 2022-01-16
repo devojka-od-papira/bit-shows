@@ -11,6 +11,7 @@ import {
   FETCH_ACTORS_REQEST,
   FETCH_ACTORS_SUCCESS,
   FETCH_ACTORS_ERROR,
+  SELECT_FAVORITE,
 } from "../actionTypes";
 
 export const fetchShowsAction = () => {
@@ -89,5 +90,18 @@ export const fetchActorsAction = (id: string) => {
           type: FETCH_ACTORS_ERROR,
         });
       });
+  };
+};
+export const selectFavoriteAction = (props: any, favorites: any) => {
+  return (dispatch: Dispatch) => {
+    const favoriteExist = favorites.find(
+      (favorite: any) => favorite.name === props.name
+    );
+    if (!favoriteExist) {
+      dispatch({
+        type: SELECT_FAVORITE,
+        payload: { favorites: [...favorites, props] },
+      });
+    }
   };
 };

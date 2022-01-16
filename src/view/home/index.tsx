@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { Box, Container, Grid, GridItem, Wrap } from "@chakra-ui/react";
+import { Container, Grid, GridItem } from "@chakra-ui/react";
 import { fetchShowsAction } from "./../../redux/actions";
 import { useAppSelector } from "./../../redux/store";
 import Card from "./../../components/card";
@@ -38,18 +37,14 @@ function Home() {
                 .map((show: ShowType) => {
                   return (
                     <GridItem key={show.id} w="100%">
-                      <Link to={`/detail/${show.id}`}>
-                        <Card {...show} />
-                      </Link>
+                      <Card {...show} />
                     </GridItem>
                   );
                 })
             : shows.map((show: ShowType) => {
                 return (
                   <GridItem key={show.id} w="100%">
-                    <Link to={`/detail/${show.id}`}>
-                      <Card {...show} />
-                    </Link>
+                    <Card {...show} />
                   </GridItem>
                 );
               })}
