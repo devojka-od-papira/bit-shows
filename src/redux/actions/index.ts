@@ -32,25 +32,28 @@ export const fetchShowsAction = () => {
 };
 
 export const sortShowsAction = (sortValue: string, shows: any) => {
-  const sortedShows = shows.sort((a: any, b: any) => {
-    if (sortValue === "name") {
-      if (a[sortValue] < b[sortValue]) {
-        return -1;
-      } else if (a[sortValue] > b[sortValue]) {
-        return 1;
+  const sortedShows = shows
+    .sort((a: any, b: any) => {
+      if (sortValue === "name") {
+        if (a[sortValue] < b[sortValue]) {
+          return -1;
+        } else if (a[sortValue] > b[sortValue]) {
+          return 1;
+        } else {
+          return 0;
+        }
       } else {
-        return 0;
+        if (a[sortValue].average < b[sortValue].average) {
+          return -1;
+        } else if (a[sortValue].average > b[sortValue].average) {
+          return 1;
+        } else {
+          return 0;
+        }
       }
-    } else {
-      if (a[sortValue].average < b[sortValue].average) {
-        return -1;
-      } else if (a[sortValue].average > b[sortValue].average) {
-        return 1;
-      } else {
-        return 0;
-      }
-    }
-  });
+    })
+    .map((show: any) => show);
+
   return (dispatch: Dispatch) => {
     dispatch({ type: SORT_SHOWS, payload: { shows: sortedShows } });
   };
