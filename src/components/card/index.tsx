@@ -1,10 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Box, Image, Spacer, Text } from "@chakra-ui/react";
-import { StarIcon, PlusSquareIcon } from "@chakra-ui/icons";
-import { selectFavoriteAction } from "./../../redux/actions";
-import { useDispatch } from "react-redux";
-import { useAppSelector } from "./../../redux/store";
 
 type CardTypes = {
   id: number;
@@ -12,14 +8,11 @@ type CardTypes = {
   name: string;
   rating: any;
   image: any;
+  favoriteButton?: any;
+  ratingIcon?: any;
 };
 
 const Card: React.FC<CardTypes> = (props) => {
-  const dispatch = useDispatch();
-  const favorites = useAppSelector((state) => state.data.favorites);
-  const selectFavorite = () => {
-    dispatch(selectFavoriteAction(props, favorites));
-  };
   return (
     <Box maxW="sm" borderWidth="1px" borderRadius="lg" overflow="hidden">
       <Link to={`/detail/${props.id}`}>
@@ -40,21 +33,11 @@ const Card: React.FC<CardTypes> = (props) => {
             justifyContent="center"
             ml="2"
           >
-            <StarIcon w={6} h={6} color="yellow.200" mr={3} />
+            {props?.ratingIcon ? props.ratingIcon : null}
             {props.rating.average}
           </Box>
           <Spacer />
-          <Box
-            as="button"
-            borderRadius="md"
-            bg="black"
-            color="white"
-            px={4}
-            h={8}
-            onClick={selectFavorite}
-          >
-            <PlusSquareIcon color="yellow.300" />
-          </Box>
+          {props.favoriteButton ? props.favoriteButton : null}
         </Box>
       </Box>
     </Box>

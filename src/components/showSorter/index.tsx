@@ -1,16 +1,24 @@
 import React from "react";
 import { Stack, Select } from "@chakra-ui/react";
 import { sortShowsAction } from "./../../redux/actions";
-import { useAppSelector } from "../../redux/store";
 import { useDispatch } from "react-redux";
 
-function ShowSorter() {
+type SorterType = {
+  options: any;
+  elements: any;
+};
+type OptionType = {
+  name: string;
+  value: string;
+};
+
+const ShowSorter: React.FC<SorterType> = ({ options, elements }) => {
   const dispatch = useDispatch();
-  const shows = useAppSelector((state) => state.data.shows);
 
   const handleSelect = (event: any) => {
-    dispatch(sortShowsAction(event.target.value, shows));
+    dispatch(sortShowsAction(event.target.value, elements));
   };
+
   return (
     <Stack>
       <Select
@@ -18,10 +26,15 @@ function ShowSorter() {
         variant="outline"
         placeholder="Sort shows"
       >
-        <option value="name">Name</option>
-        <option value="rating">Rating</option>
+        {options.map((option: OptionType) => {
+          return (
+            <option key={option.name} value={option.value}>
+              {option.name}
+            </option>
+          );
+        })}
       </Select>
     </Stack>
   );
-}
+};
 export default ShowSorter;

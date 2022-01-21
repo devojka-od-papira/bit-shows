@@ -4,9 +4,15 @@ import { Link } from "react-router-dom";
 
 type MenuItemsTypes = {
   isOpen: boolean;
+  pages: any;
 };
 
-const MenuItems: React.FC<MenuItemsTypes> = ({ isOpen }) => {
+type NavType = {
+  url: string;
+  name: string;
+};
+
+const MenuItems: React.FC<MenuItemsTypes> = ({ isOpen, pages }) => {
   return (
     <Box
       display={{ base: isOpen ? "block" : "none", md: "block" }}
@@ -19,9 +25,13 @@ const MenuItems: React.FC<MenuItemsTypes> = ({ isOpen }) => {
         direction={["column", "row"]}
         pt={[4, 4, 0, 0]}
       >
-        <Link to="/">BIT Shows</Link>
-        <Link to="/favorites">Favorites</Link>
-        <Link to="/about">About </Link>
+        {pages.map((page: NavType) => {
+          return (
+            <Link key={page.name} to={page.url}>
+              {page.name}
+            </Link>
+          );
+        })}
       </Stack>
     </Box>
   );

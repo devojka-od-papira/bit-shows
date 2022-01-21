@@ -4,6 +4,17 @@ import MenuItems from "../menuItems";
 import ThemeSwitch from "../themeSwitch";
 
 function NavBar() {
+  const pages = [
+    {
+      name: "BIT Shows",
+      url: "/",
+    },
+    { name: "Favorites", url: "/favorites" },
+    {
+      name: "About",
+      url: "/about",
+    },
+  ];
   return (
     <Flex
       as="nav"
@@ -18,7 +29,7 @@ function NavBar() {
     >
       <Container maxW="container.md">
         <Box alignItems="center" justifyContent="space-between" display="flex">
-          <MenuItems isOpen={false} />
+          <MenuItems isOpen={false} pages={pages} />
           <ThemeSwitch />
         </Box>
       </Container>

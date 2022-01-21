@@ -10,12 +10,23 @@ import {
 } from "@chakra-ui/react";
 import { Search2Icon } from "@chakra-ui/icons";
 import ShowSorter from "./../showSorter";
+import { useAppSelector } from "../../redux/store";
 
 type SerachBarType = {
   setFilterValue: any;
 };
 
 const SearchBar: React.FC<SerachBarType> = ({ setFilterValue }) => {
+  const shows = useAppSelector((state) => state.data.shows);
+
+  const dropDownOptions = [
+    {
+      name: "Name",
+      value: "name",
+    },
+    { name: "Rating", value: "rating" },
+  ];
+
   const handleChange = (event: any) => {
     setFilterValue(event.target.value);
   };
@@ -34,7 +45,7 @@ const SearchBar: React.FC<SerachBarType> = ({ setFilterValue }) => {
             </InputGroup>
           </Box>
           <Box>
-            <ShowSorter />
+            <ShowSorter options={dropDownOptions} elements={shows} />
           </Box>
         </HStack>
       </VStack>
