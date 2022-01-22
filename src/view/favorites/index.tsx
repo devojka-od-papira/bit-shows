@@ -1,5 +1,6 @@
 import React from "react";
 import { Container, Grid, GridItem, Box } from "@chakra-ui/react";
+import { StarIcon, PlusSquareIcon } from "@chakra-ui/icons";
 import { useAppSelector } from "./../../redux/store";
 import { DeleteIcon } from "@chakra-ui/icons";
 import Footer from "../../components/footer";
@@ -17,6 +18,9 @@ const Favorite: React.FC<FavoriteType> = () => {
             return (
               <GridItem key={favorite.id} w="100%">
                 <Card
+                  ratingIcon={
+                    <StarIcon w={6} h={6} color="yellow.200" mr={3} />
+                  }
                   favoriteButton={
                     <Box
                       as="button"
