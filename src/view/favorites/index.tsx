@@ -1,6 +1,6 @@
 import React from "react";
 import { Container, Grid, GridItem, Box } from "@chakra-ui/react";
-import { StarIcon, PlusSquareIcon } from "@chakra-ui/icons";
+import { StarIcon } from "@chakra-ui/icons";
 import { useAppSelector } from "./../../redux/store";
 import { DeleteIcon } from "@chakra-ui/icons";
 import Footer from "../../components/footer";
